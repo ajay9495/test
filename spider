@@ -1,0 +1,65 @@
+<?php
+
+function url_exist($url)
+{
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_NOBODY, true);
+    $result = curl_exec($curl);
+    if ($result !== false)
+    {
+      $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+      if ($statusCode != 404)
+      {
+         return 1;
+      }
+    }
+}
+
+function get_urls($url)
+{
+    if(url_exist($url) == 1)
+    {    
+        $content = file_get_contents($url);
+        $reg ="#\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))#iS";
+        preg_match_all($reg, $content, $matches);
+        
+            if(!empty($matches[0]))
+            {
+              return $matches[0];
+            }
+            else
+            {
+                return "no result";
+            }  
+    }
+}
+
+
+
+
+function fun($from,$till,$arr_var)
+{  
+  if($from < $till)
+  {    
+      echo count($arr_var)."<br>";
+
+    $arr_two = get_urls($arr_var[3]);
+    $arr_var = array_merge($arr_var,$arr_two);    
+    $from = $from + 1;
+    fun($from,$till,$arr_var);
+  }
+}
+
+
+
+
+$start_arr = array('https://www.nytimes.com/','http://www.forbesindia.com/','https://www.buzzfeed.com','https://www.fastcompany.com');
+
+fun(0,5,$start_arr);
+
+
+
+
+
+
+?>
