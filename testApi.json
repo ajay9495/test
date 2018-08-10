@@ -1,0 +1,22 @@
+[
+	{
+		"service_name":"hair cut",
+		 "photo":"https://i.imgur.com/eqSzquF.jpg",
+		 "description":"Best hair care service in town"
+	},
+	{
+		"service_name":"facial",
+		"photo":"https://i.imgur.com/181RJn8.jpg",
+		"description":"Best skin care service"
+	},
+	{
+		"service_name":"massage",
+		 "photo":"https://i.imgur.com/eqSzquF.jpg",
+		 "description":"Best massage service in town"
+	},
+	{
+		"service_name":"Nail Care",
+		"photo":"https://i.imgur.com/181RJn8.jpg",
+		"description":"Best Nail care service"
+	}
+]
