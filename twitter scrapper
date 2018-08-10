@@ -1,0 +1,42 @@
+<?php
+
+function get_image($ProfileName)
+{
+ $content = file_get_contents('https://twitter.com/'.$ProfileName);
+
+  preg_match_all('/data-image-url\=\"(.*)\"/', $content, $matches);
+  return $matches;
+}
+
+function show($matches)
+{
+  for($i = 0;$i < count($matches[1]);$i++ )
+  { 
+      if($i < 3)
+    {
+      echo'<br><img height="200px" src="'.$matches[1][$i].'">';
+    }
+  }  
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<?php
+
+  $profile_name = 'itsoobeautiful';
+  $image_arr = get_image($profile_name);
+  show($image_arr);
+    
+?>
+
+
+</body>
+</html>
+
